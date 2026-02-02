@@ -4,8 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
-    },
+      primaryKey: true,
+autoIncrement :true   },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -21,12 +21,15 @@ module.exports = function(sequelize, DataTypes) {
     order_value: {
       type: DataTypes.DECIMAL,
       allowNull: true
-    }
+    },
+    createdAt: false,
+    updatedAt: false
+
   }, {
     sequelize,
     tableName: 'orders',
     schema: 'public',
-    timestamps: true,
+    // timestamps: true,
     indexes: [
       {
         name: "fki_order_user_id",
@@ -42,5 +45,7 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
     ]
-  });
+  },{
+    timestamps: false
+  })
 };
