@@ -7,7 +7,6 @@ const TestQuery = async () => {
     type: Sequelize.QueryTypes.SELECT,
     logging: true
   });
-
 }
 
 TestQuery();
