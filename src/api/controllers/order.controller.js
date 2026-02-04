@@ -8,11 +8,17 @@ exports.getAllOrders = async (req, res, next) => {
 
         // check in redis cache first
 
+        const limit = req.query.limit;
+        const offset = req.query.offset;
+        
 
+        const { count, rows } = await sequelize.models.orders.findAndCountAll({ 
+            limit: limit,  
+            offset: offset 
+        });
+        let orders = rows;
 
-        let orders = await sequelize.models.orders.findAll()
-        let limit = req.query.limit;
-        let offset = req.query.offset;
+        
 
         if (limit) {
             orders.limit = limit;
@@ -21,11 +27,17 @@ exports.getAllOrders = async (req, res, next) => {
             orders.offset = offset;
         }
 
+        // pagination
+        console.log('Limit:', limit, 'Offset:', offset);
         let results = {
-            count: orders.length,
-            rows: orders
-        }
-        return res.json(results);
+            count: count,
+            rows: orders,
+            totalPages: Math.ceil(count / limit),
+        };
+
+        return res.status(200).json(results);
+
+       
     } catch (error) {
         next(error);
     }
