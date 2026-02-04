@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const {Sequelize,DataTypes} = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('orders', {
     id: {
@@ -22,11 +22,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL,
       allowNull: true
     }
+
   }, {
     sequelize,
     tableName: 'orders',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "fki_order_user_id",
@@ -44,3 +45,4 @@ module.exports = function(sequelize, DataTypes) {
     ]
   });
 };
+
