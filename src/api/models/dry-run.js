@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./index');
+const Orders = require('./orders');
 
 const TestQuery = async () => {
   const results = await db.sequelize.query(`
@@ -11,5 +12,7 @@ const TestQuery = async () => {
   console.log('results')
   console.log(results)
 }
+
+Orders.sync();
 
 TestQuery();

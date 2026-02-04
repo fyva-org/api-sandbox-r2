@@ -2,6 +2,8 @@ const express = require('express');
 // const userRoutes = require('./user.route');
 // const authRoutes = require('./auth.route');
 
+const orderRoutes = require('./order.route');
+
 const router = express.Router();
 
 /**
@@ -13,6 +15,12 @@ router.get('/status', (req, res) => res.send('OK'));
  * GET v1/docs
  */
 router.use('/docs', express.static('docs'));
+
+router.use('/orders', orderRoutes);
+
+
+
+
 
 // router.use('/users', userRoutes);
 // router.use('/auth', authRoutes);

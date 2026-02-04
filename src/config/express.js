@@ -11,6 +11,7 @@ const { logs } = require('./vars');
 // const strategies = require('./passport');
 const error = require('../api/middlewares/error');
 
+
 /**
 * Express instance
 * @public
@@ -37,6 +38,7 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+
 // enable authentication
 // app.use(passport.initialize());
 // passport.use('jwt', strategies.jwt);
@@ -44,7 +46,7 @@ app.use(cors());
 // passport.use('google', strategies.google);
 
 // mount api v1 routes
-// app.use('/v1', routes);
+app.use('/v1', routes);
 
 // if error is not an instanceOf APIError, convert it.
 app.use(error.converter);
